@@ -1,4 +1,4 @@
-### Sample Application for CodeFresh.io Technical Interview
+### Sample Vue Application
 Application is built with the following:
 * Docker
 * Vue2 JS SPA Framework with:
