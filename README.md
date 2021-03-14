@@ -1,29 +1,16 @@
-# simple-vue-with-test
+### Sample Application for CodeFresh.io Technical Interview
+Application is built with the following:
+* Docker
+* Vue2 JS SPA Framework with:
+  * Vue-Router
+  * Vuex
+  * Bootstrap-Vue
+  * Jest
+  * Lint
+* NGINX
 
-## Project setup
-```
-npm install
-```
+Deployment Options:
+* Kubernetes Deployment with Service & Ingress
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### License
+MIT License
