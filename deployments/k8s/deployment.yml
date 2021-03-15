@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - image: 'marqaaron/sample-vue-app:latest'
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: sample-vue-app
           ports:
             - containerPort: 8082
