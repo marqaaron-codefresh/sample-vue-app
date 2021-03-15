@@ -19,8 +19,8 @@ steps:
     image_name: ${{DOCKER_ORGANIZATION}}/sample-vue-app
     tag: ${{CF_SHORT_REVISION}}
     dockerfile: Dockerfile
-    no_cache: true
-    no_cf_cache: true
+    no_cache: false
+    no_cf_cache: false
     build_arguments:
       - VERSION=${{CF_SHORT_REVISION}}
       - WEB_SERVER=nginx
@@ -48,8 +48,8 @@ steps:
     image_name: ${{DOCKER_ORGANIZATION}}/sample-vue-app
     tag: ${{CF_SHORT_REVISION}}
     dockerfile: Dockerfile
-    no_cache: true
-    no_cf_cache: true
+    no_cache: false
+    no_cf_cache: false
     build_arguments:
       - VERSION=${{CF_SHORT_REVISION}}
       - WEB_SERVER=nginx
