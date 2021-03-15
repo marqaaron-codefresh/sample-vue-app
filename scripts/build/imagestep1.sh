@@ -9,8 +9,14 @@ else
   echo "Unknown WEB_SERVER selected. No Server Started. No further actions."
 fi
 
-echo "Installing required packages"
-apk add --no-cache git nodejs npm
+if [ "$BUILD_TYPE" = 'test' ]; then
+  echo "Installing required packages for Test Build"
+  apk add --no-cache git nodejs npm
+else
+  echo "Not a Test Build. Delaying Install of required packages to Image Step 2"
+fi
+
+
 
 echo "Moving to root directory"
 cd /

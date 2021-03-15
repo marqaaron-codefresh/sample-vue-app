@@ -1,6 +1,7 @@
 # Build Related Arguments
 webServer=nginx
 version=local-docker
+buildType=test
 
 # Local Environment Related Arguments
 localPort=8082
@@ -26,6 +27,7 @@ build-local:
 	docker build \
 	--build-arg WEB_SERVER=${webServer} \
 	--build-arg VERSION=${version} \
+	--build-arg BUILD_TYPE=${buildType} \
 	-t marqaaron/sample-vue-app:${version} \
 	.
 
@@ -39,6 +41,7 @@ build-prod:
 	docker build \
 	--build-arg WEB_SERVER=${webServer} \
 	--build-arg VERSION=${version} \
+	--build-arg BUILD_TYPE=${buildType} \
 	-t marqaaron/sample-vue-app:latest \
 	-t marqaaron/sample-vue-app:${version} \
 	.
