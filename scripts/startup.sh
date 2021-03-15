@@ -2,7 +2,7 @@
 
 echo "--------- Startup Logs -----------"
 
-echo "Exporting APP_SERVER from file"
+echo "Exporting WEB_SERVER from file"
 export WEB_SERVER=$(cat /env/web_server)
 
 echo "Changing /scripts/webServers/nginx/startupNginx.sh file to executable"

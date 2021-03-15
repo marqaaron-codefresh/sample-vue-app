@@ -36,4 +36,8 @@ echo ${VERSION} > version && chmod +rw version
 
 echo "Saving WEB_SERVER environment variable to text file for later"
 echo "WEB_SERVER set to ${WEB_SERVER}"
-echo ${WEB_SERVER} > web_server && chmod +rw version
+echo ${WEB_SERVER} > web_server && chmod +rw web_server
+
+echo "Saving BUILD_TYPE environment variable to text file for later"
+echo "BUILD_TYPE set to ${BUILD_TYPE}"
+echo ${BUILD_TYPE} > build_type && chmod +rw build_type

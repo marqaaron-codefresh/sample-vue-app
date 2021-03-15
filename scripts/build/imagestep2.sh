@@ -2,6 +2,9 @@
 
 echo "--------- Image Step 2 Logs -----------"
 
+echo "Exporting BUILD_TYPE from file"
+export BUILD_TYPE=$(cat /env/build_type)
+
 if [ "$BUILD_TYPE" = 'test' ]; then
   echo "This is a Test Build. Packages Already Installed"
 else
