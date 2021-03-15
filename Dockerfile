@@ -1,6 +1,6 @@
 FROM alpine:3.13 AS imagestep1
-ARG VERSION
-ARG WEB_SERVER
+ARG VERSION='dev'
+ARG WEB_SERVER='nginx'
 RUN apk add --no-cache bash
 COPY /scripts /scripts
 RUN ["chmod", "+x", "/scripts/build/imagestep1.sh"]
