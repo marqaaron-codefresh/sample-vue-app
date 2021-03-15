@@ -1,0 +1,77 @@
+version: '1.0'
+stages:
+  - "Clone"
+  - "Test"
+  - "Register"
+  - "Deploy"
+steps:
+  main_clone:
+    title: Cloning Main Repository
+    type: git-clone
+    repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
+    revision: '${{CF_REVISION}}'
+    stage: "Clone"
+  buildTestDocker:
+    title: Building Test Docker Image
+    type: build
+    stage: "Test"
+    registry: ${{DOCKER_ORGANIZATION}}
+    image_name: ${{DOCKER_ORGANIZATION}}/sample-vue-app
+    tag: ${{CF_SHORT_REVISION}}
+    dockerfile: Dockerfile
+    no_cache: true
+    no_cf_cache: true
+    build_arguments:
+      - VERSION=${{CF_SHORT_REVISION}}
+      - WEB_SERVER=nginx
+      - BUILD_TYPE=test
+    disable_push: true
+  unitTest:
+    title: Running Unit Tests
+    stage: "Test"
+    image: ${{buildTestDocker}}
+    commands:
+      - cd /ui/app
+      - npm run test:unit
+  registerApproval:
+    type: pending-approval
+    title: Awaiting Approval to Register Image
+    stage: "Register"
+    timeout:
+      duration: 1
+      finalState: approved
+  buildProdDocker:
+    title: Building Production Docker Image
+    type: build
+    stage: "Register"
+    registry: ${{DOCKER_ORGANIZATION}}
+    image_name: ${{DOCKER_ORGANIZATION}}/sample-vue-app
+    tag: ${{CF_SHORT_REVISION}}
+    dockerfile: Dockerfile
+    no_cache: true
+    no_cf_cache: true
+    build_arguments:
+      - VERSION=${{CF_SHORT_REVISION}}
+      - WEB_SERVER=nginx
+      - BUILD_TYPE=production
+    disable_push: true
+  pushDocker:
+    title: Pushing Production Image to Registry
+    type: push
+    stage: "Register"
+    registry: ${{DOCKER_ORGANIZATION}}
+    candidate: ${{buildProdDocker}}
+    tags:
+      - latest
+      - ${{CF_SHORT_REVISION}}
+  deployK8s:
+    title: Deploying to Kubernetes
+    type: deploy
+    kind: kubernetes
+    cluster: Linode
+    namespace: production
+    service: sample-vue-app
+    candidate:
+      image: ${{buildProdDocker}}
+      registry: marqaaron
+    stage: "Deploy"
