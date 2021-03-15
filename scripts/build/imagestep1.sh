@@ -25,7 +25,9 @@ echo "Creating /env directory and moving to it"
 mkdir env && cd /env
 
 echo "Saving VERSION environment variable to text file for later"
+echo "VERSION set to ${VERSION}"
 echo ${VERSION} > version && chmod +rw version
 
-echo "Saving APP_SERVER environment variable to text file for later"
+echo "Saving WEB_SERVER environment variable to text file for later"
+echo "WEB_SERVER set to ${WEB_SERVER}"
 echo ${WEB_SERVER} > web_server && chmod +rw version
