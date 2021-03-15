@@ -19,6 +19,3 @@ rm -rf dist
 
 echo "Building Production App"
 npm run build
-
-echo "Removing node_modules"
-rm -rf node_modules

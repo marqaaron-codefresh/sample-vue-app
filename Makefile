@@ -18,17 +18,27 @@ help:
 	@echo "Make Commands:"
 	@echo "build-local (Builds Docker Image locally for development)"
 	@echo "run-local (Runs Docker Image locally for development)"
+	@echo "build-prod (Builds Docker Image locally for production)"
+
 
 
 build-local:
 	docker build \
 	--build-arg WEB_SERVER=${webServer} \
 	--build-arg VERSION=${version} \
-	-t codefresh-assessment \
+	-t marqaaron/sample-vue-app:${version} \
 	.
 
 run-local:
 	docker run -it -p ${localPort}:8082 \
     --rm \
-    --name codefresh-assessment \
-    codefresh-assessment
+    --name sample-vue-app \
+    marqaaron/sample-vue-app:${version}
+
+build-prod:
+	docker build \
+	--build-arg WEB_SERVER=${webServer} \
+	--build-arg VERSION=${version} \
+	-t marqaaron/sample-vue-app:latest \
+	-t marqaaron/sample-vue-app:${version} \
+	.
