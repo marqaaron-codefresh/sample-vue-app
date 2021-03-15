@@ -68,7 +68,7 @@ steps:
     title: Deploying to Kubernetes
     type: deploy
     kind: kubernetes
-    cluster: Linode
+    cluster: lke3584-ctx
     namespace: production
     service: sample-vue-app
     candidate:
