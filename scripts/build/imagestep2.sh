@@ -2,9 +2,6 @@
 
 echo "--------- Image Step 2 Logs -----------"
 
-echo "Installing required packages"
-apk add --no-cache git nodejs npm
-
 echo "Moving into /ui/app directory"
 cd /ui/app
 
