@@ -75,3 +75,13 @@ steps:
       image: ${{buildProdDocker}}
       registry: marqaaron
     stage: "Deploy"
+    env:
+      name: codefresh
+      endpoints:
+        - name: app
+          url: https://codefresh.marqaaron.io
+      type: kubernetes
+      change: ${{CF_COMMIT_MESSAGE}}
+      filters:
+        - cluster: Linode
+        - namespace: production
