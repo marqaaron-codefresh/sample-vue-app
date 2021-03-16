@@ -32,6 +32,6 @@ describe('LoginButton.vue', () => {
         },1000);
     })
     it('Hard-coded Test Stub', async() => {
-        expect(true).toBe(true);
+        expect(true).toBe(false);
     })
 })
